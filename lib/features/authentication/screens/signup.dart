@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pkart/features/authentication/screens/verify_email.dart';
 import 'package:pkart/utils/constants/colors.dart';
 import 'package:get/get.dart';
-import 'package:pkart/features/authentication/screens/login.dart';
+
 import 'package:pkart/utils/helpers/helper_functions.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 
@@ -18,6 +19,7 @@ class SignupScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Let's create your account",
@@ -165,7 +167,7 @@ class SignupScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () =>
-                            Get.to(() => const LoginScreen()),
+                            Get.to(() => const VerifyEmailAddress()),
                         child: const Text("Create Account"),
                       ),
                     ),
