@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pkart/features/authentication/screens/login.dart';
-import 'package:pkart/features/authentication/screens/verify_email_success.dart';
-import 'package:pkart/utils/constants/image_strings.dart';
-import 'package:pkart/utils/helpers/helper_functions.dart';
 
-class VerifyEmailAddress extends StatelessWidget {
-  const VerifyEmailAddress({super.key});
+import '../../../utils/constants/image_strings.dart';
+import '../../../utils/helpers/helper_functions.dart';
+import 'login.dart';
+
+class ResetPassword extends StatelessWidget {
+  const ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +15,15 @@ class VerifyEmailAddress extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () => Get.offAll(() => const LoginScreen()),
-              icon: const Icon(CupertinoIcons.clear))
+          IconButton(onPressed: ()=> Get.back(), icon: const Icon(CupertinoIcons.clear),),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
+      body:  SingleChildScrollView(
+        child: Padding(padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              ///image
               Image(
-                image: const AssetImage(TImages.verifyEmail),
+                image: const AssetImage(TImages.confirmedEmail),
                 width: THelperFunctions.screenWidth(context) * 0.6,
               ),
               const SizedBox(
@@ -36,24 +32,17 @@ class VerifyEmailAddress extends StatelessWidget {
 
               ///Title and Subtitle
               Text(
-                "Verify your email address",
+                "Password Reset Link Sent Successfully !",
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 16,
               ),
-              Text(
-                "prayasdhand13@gmail.com",
-                style: Theme.of(context).textTheme.labelLarge,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+
               Text(
                 """
-Congratulations, Your Account Awaits!....Kindly verify your email address to start the journey of limitless items, goodies and shopping""",
+Your Account Security is our Priority....We have successfully sent you a Password Reset Link on your mail, Please use that to safely change your password and keep your account protected  """,
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
@@ -65,21 +54,21 @@ Congratulations, Your Account Awaits!....Kindly verify your email address to sta
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()=>Get.to(()=> const SuccessScreen()),
+                  onPressed: ()=>Get.to(()=> const LoginScreen()),
                   child: const Text("Continue"),
                 ),
               ),
-              const SizedBox(height:16,),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: (){},
                   child: const Text("Resend Email"),
                 ),
               ),
-
             ],
+
           ),
+
         ),
       ),
     );

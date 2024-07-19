@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/styles/spacing_styles.dart';
+import 'package:pkart/features/authentication/screens/forgot_password.dart';
 import 'package:pkart/features/authentication/screens/signup.dart';
+import 'package:pkart/navigation_menu.dart';
 
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/helpers/helper_functions.dart';
@@ -75,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           //forget password
                           TextButton(
-                            onPressed: () {},
+                            onPressed: ()=> Get.to(()=> const ForgotPassword()),
                             child: const Text("Forget Password?"),
                           ),
                         ],
@@ -84,9 +86,18 @@ class LoginScreen extends StatelessWidget {
                         height: 32,
                       ),
                       SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                              onPressed: () {}, child: const Text("Sign In!"))),
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const NavigationMenu(),
+                              ),
+                            );
+                          },
+                          child: const Text("Sign In!"),
+                        ),
+                      ),
                       const SizedBox(
                         height: 16,
                       ),
