@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/features/shop/screens/home.dart';
+import 'package:pkart/features/shop/screens/product_details.dart';
 import 'package:pkart/utils/constants/colors.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/helpers/helper_functions.dart';
@@ -15,7 +17,7 @@ class TProductCardVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(()=> const ProductDetails()),
       child: Container(
         width: 150,
         padding: const EdgeInsets.all(1),
