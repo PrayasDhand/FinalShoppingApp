@@ -31,7 +31,7 @@ class TProductCardVertical extends StatelessWidget {
             TRoundedContainer(
               height: 150,
               width: 200,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(2),
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
@@ -53,13 +53,13 @@ class TProductCardVertical extends StatelessWidget {
                   // ),
 
                   Positioned(
-                    top: 12,
-                    left: 10,
+                    top: 15,
+                    left: 5,
                     child: TRoundedContainer(
                       radius: 8,
                       backgroundColor: TColors.secondary.withOpacity(0.8),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
+                          horizontal: 10, vertical: 10),
                       child: Text(
                         " 25%",
                         style: Theme.of(context)

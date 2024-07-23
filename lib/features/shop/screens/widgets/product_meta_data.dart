@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
+
 import 'package:pkart/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pkart/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pkart/features/shop/screens/widgets/product_title_text.dart';
-import 'package:pkart/utils/constants/colors.dart';
+
 import 'package:pkart/utils/constants/enums.dart';
-import 'package:pkart/utils/helpers/helper_functions.dart';
+import 'package:pkart/utils/constants/image_strings.dart';
+
 
 class TProductMetaData extends StatelessWidget {
   const TProductMetaData({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = THelperFunctions.isDarkMode(context);
+
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,8 +22,8 @@ class TProductMetaData extends StatelessWidget {
           children: [
             TRoundedContainer(
               radius: 5,
-              backgroundColor: TColors.secondary.withOpacity(0.8),
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+              backgroundColor: Colors.amber,
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
               child: Text(' 25% ',style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.black), textAlign: TextAlign.center,),
             ),
             const SizedBox(width: 16.0,),
@@ -49,11 +50,11 @@ class TProductMetaData extends StatelessWidget {
         const SizedBox(height: 16 /1.5,),
 
         ///Brand
-         const Row(
+          Row(
           children: [
-            Icon(Iconsax.bootsrap, size: 30 ,color: Colors.white),
-            SizedBox(width: 16,),
-            TBrandTitleWithVerifyIcon(title: 'Nike',brandTextSize: TextSizes.medium,),
+            Image.asset(TImages.brand1,height: 30,width: 30),
+            const SizedBox(width: 16,),
+            const TBrandTitleWithVerifyIcon(title: 'Nike',brandTextSize: TextSizes.medium,),
           ],
         ),
       ],

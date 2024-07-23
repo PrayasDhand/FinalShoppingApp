@@ -148,7 +148,7 @@ class StoreScreen extends StatelessWidget {
                           itemBuilder: (_, index) => GestureDetector(
                                 onTap: () {},
                                 child: TRoundedContainer(
-                                  padding: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(2),
                                   showBorder: true,
                                   backgroundColor: Colors.transparent,
                                   child: Row(
@@ -251,7 +251,7 @@ class TCategoryTab extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
 
       children: [Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             ///brands
@@ -317,7 +317,7 @@ class TBrandShowcase extends StatelessWidget {
     return TRoundedContainer(
       showBorder: true,
       borderColor: Colors.blueGrey,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(5),
       backgroundColor: Colors.transparent,
       margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
@@ -325,7 +325,7 @@ class TBrandShowcase extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: TRoundedContainer(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(2),
               showBorder: false,
               backgroundColor: Colors.transparent,
               child: Row(
@@ -382,8 +382,8 @@ class TBrandShowcase extends StatelessWidget {
     return Expanded(
       child: TRoundedContainer(
         height: 100,
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(10),
         backgroundColor:
             THelperFunctions.isDarkMode(context) ? Colors.black : TColors.light,
         child: Image(
