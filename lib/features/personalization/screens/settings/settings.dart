@@ -4,6 +4,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/primary_container_header.dart';
 import 'package:pkart/common/widgets/list_tiles/settings_menu_tile.dart';
+import 'package:pkart/features/personalization/screens/address/address.dart';
 import 'package:pkart/utils/constants/colors.dart';
 
 import '../../../../utils/constants/image_strings.dart';
@@ -97,7 +98,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home_copy,
                     title: 'My Addresses',
                     subTitle: 'Set Shopping Delivery Address',
-                    onTap: () {},
+                    onTap: () => Get.to(()=> const UserAddressScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.shopping_cart_copy,

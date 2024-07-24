@@ -92,36 +92,40 @@ class UserReviewCard extends StatelessWidget {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("P's Store",style: Theme.of(context).textTheme.bodyLarge,),
                     Text("11 Nov, 2023" ,style: Theme.of(context).textTheme.bodyMedium,),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    const ReadMoreText(
-                      'The User Interdace of the app is quite intutive and everything is easily accessible..I was able to navigate and make purcahes seamlessly, Great Job done by the team of PKart..',
-                      trimLines: 2,
-                      trimMode: TrimMode.Line,
-                      trimExpandedText: ' show less',
-                      trimCollapsedText: ' show more',
-                      moreStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: TColors.primaryColor),
-                      lessStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: TColors.primaryColor),
-                    ),
+
+
 
 
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                const ReadMoreText(
+                  'The User Interdace of the app is quite intutive and everything is easily accessible..I was able to navigate and make purcahes seamlessly, Great Job done by the team of PKart..',
+                  trimLines: 2,
+                  trimMode: TrimMode.Line,
+                  trimExpandedText: ' less',
+                  trimCollapsedText: ' more',
+                  moreStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                  lessStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 32.0),
+        const SizedBox(height: 32.0,),
+
       ],
     );
   }
