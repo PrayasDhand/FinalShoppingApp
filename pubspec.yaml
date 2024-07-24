@@ -36,6 +36,7 @@ dependencies:
   iconsax_flutter: ^1.0.0
   carousel_slider: ^4.2.1
   readmore: ^3.0.0
+  flutter_rating_bar: ^4.0.1
 
 
 

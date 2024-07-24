@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pkart/features/shop/screens/product_reviews.dart';
 import 'package:pkart/features/shop/screens/widgets/product_attributes.dart';
 import 'package:pkart/features/shop/screens/widgets/product_bottom_add_to_cart_widget.dart';
 import 'package:pkart/features/shop/screens/widgets/product_detail_image_slider.dart';
@@ -68,8 +70,8 @@ class ProductDetails extends StatelessWidget {
                     'This is Product Description for our Nike Blue Sneakers coming from the brand of Luxury our very own Nike...This product is the epitome of style, comfort and luxury all together. I can go on and on about the qualities of the product',
                   trimLines: 2,
                     trimMode: TrimMode.Line,
-                    trimCollapsedText: 'Show More',
-                    trimExpandedText: 'Less',
+                    trimCollapsedText: ' Show More',
+                    trimExpandedText: ' Less',
                     moreStyle: TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
                     lessStyle: TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
                   ),
@@ -90,7 +92,7 @@ class ProductDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                      IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_1_copy),),
+                      IconButton(onPressed: ()=> Get.to(()=> const TProductReviews()), icon: const Icon(Iconsax.arrow_right_1_copy),),
 
                     ],
                   )
