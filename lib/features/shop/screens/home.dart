@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
+import 'package:pkart/features/shop/screens/cart.dart';
 import 'package:pkart/features/shop/screens/promo_slider.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/device/device_utility.dart';
@@ -48,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                       Stack(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: ()=> Get.to(()=> const CartScreen()),
                             icon: const Icon(
                               Iconsax.shopping_bag,
                               color: Colors.white,

@@ -29,4 +29,9 @@ class TImages{
 
   static const user1 = "assets/images/users/master-of-ceremonies.png";
 
+
+  static const paymentMethod1 = "assets/images/payment_methods/amazon-pay.png";
+  static const paymentMethod2= "assets/images/payment_methods/google-pay.png";
+  static const paymentMethod3= "assets/images/payment_methods/paypal (1).png";
+
 }

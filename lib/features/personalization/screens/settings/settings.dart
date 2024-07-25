@@ -5,6 +5,8 @@ import 'package:pkart/common/widgets/appbar/appbar.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/primary_container_header.dart';
 import 'package:pkart/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:pkart/features/personalization/screens/address/address.dart';
+import 'package:pkart/features/shop/screens/cart.dart';
+import 'package:pkart/features/shop/screens/orders.dart';
 import 'package:pkart/utils/constants/colors.dart';
 
 import '../../../../utils/constants/image_strings.dart';
@@ -104,13 +106,13 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.shopping_cart_copy,
                     title: 'My Cart',
                     subTitle: 'Add or remove products and move to checkout',
-                    onTap: () {},
+                    onTap: ()=> Get.to(()=> const CartScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick_copy,
                     title: 'My Orders',
                     subTitle: 'In-Progress and Complete Orders',
-                    onTap: () {},
+                    onTap: () => Get.to(()=> const OrdersScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bank_copy,
