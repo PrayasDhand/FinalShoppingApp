@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pkart/common/styles/spacing_styles.dart';
-import 'package:pkart/features/authentication/screens/login.dart';
 
-import '../../../utils/constants/image_strings.dart';
+import 'package:pkart/common/styles/spacing_styles.dart';
+
+
+
 import '../../../utils/helpers/helper_functions.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {

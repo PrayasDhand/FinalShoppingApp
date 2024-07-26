@@ -5,6 +5,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
 import 'package:pkart/features/shop/screens/cart.dart';
 import 'package:pkart/features/shop/screens/promo_slider.dart';
+import 'package:pkart/features/shop/screens/sub_categories.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/device/device_utility.dart';
 
@@ -138,39 +139,42 @@ class HomeScreen extends StatelessWidget {
                             itemBuilder: (_, index) {
                               return Padding(
                                 padding: const EdgeInsets.only(right: 16),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width: 56,
-                                      height: 56,
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                      ),
-                                      child: const Center(
-                                        child: Image(
-                                          image: AssetImage(TImages.brand1),
-                                          fit: BoxFit.cover,
+                                child: GestureDetector(
+                                  onTap: ()=> Get.to(()=> const SubCategoriesScreen()),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: 56,
+                                        height: 56,
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                        ),
+                                        child: const Center(
+                                          child: Image(
+                                            image: AssetImage(TImages.brand1),
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    SizedBox(
-                                      width: 55,
-                                      child: Text(
-                                        'Shoes',
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium!
-                                            .apply(color: Colors.white),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                                      const SizedBox(height: 8),
+                                      SizedBox(
+                                        width: 55,
+                                        child: Text(
+                                          'Shoes',
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium!
+                                              .apply(color: Colors.white),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               );
                             },
