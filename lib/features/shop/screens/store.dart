@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pkart/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:pkart/features/shop/screens/all_brands.dart';
 import 'package:pkart/utils/constants/colors.dart';
 import 'package:pkart/utils/constants/enums.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
@@ -125,7 +127,7 @@ class StoreScreen extends StatelessWidget {
                                 const SizedBox(width: 16), // Adjusted spacing
                                 TextButton(
                                   iconAlignment: IconAlignment.end,
-                                  onPressed: () {},
+                                  onPressed: () => Get.to(()=> const AllBrandsScreen()),
                                   child: const Text('View All'),
                                 ),
                               ],

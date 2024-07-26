@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
+import 'package:pkart/features/shop/screens/all_products.dart';
 import 'package:pkart/features/shop/screens/cart.dart';
 import 'package:pkart/features/shop/screens/promo_slider.dart';
 import 'package:pkart/features/shop/screens/sub_categories.dart';
@@ -212,7 +213,7 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(width: 16), // Adjusted spacing
                             TextButton(
                               iconAlignment: IconAlignment.end,
-                              onPressed: () {},
+                              onPressed: ()=> Get.to(()=> const AllProducts()),
                               child: const Text('View All'),
                             ),
                           ],
