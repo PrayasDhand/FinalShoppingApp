@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:pkart/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:pkart/common/widgets/products/product_cards/product_card_vertical.dart';
+
 import 'package:pkart/features/shop/screens/widgets/product_title_text.dart';
 
 import 'package:pkart/utils/constants/enums.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
+
+import 'brand_title_verified.dart';
 
 
 class TProductMetaData extends StatelessWidget {

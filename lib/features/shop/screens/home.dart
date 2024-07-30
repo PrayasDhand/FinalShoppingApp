@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pkart/common/styles/section_headings.dart'; // Ensure the import path is correct
 import 'package:pkart/common/widgets/appbar/appbar.dart';
 import 'package:pkart/features/shop/screens/all_products.dart';
 import 'package:pkart/features/shop/screens/cart.dart';
@@ -9,10 +9,11 @@ import 'package:pkart/features/shop/screens/promo_slider.dart';
 import 'package:pkart/features/shop/screens/sub_categories.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/device/device_utility.dart';
+import 'package:pkart/common/widgets/custom_shapes/containers/primary_container_header.dart';
 
-import '../../../common/widgets/custom_shapes/containers/primary_container_header.dart';
-import '../../../common/widgets/products/product_cards/product_card_vertical.dart';
-import '../../../utils/constants/colors.dart';
+
+import '../../../common/widgets/grids/custom_grid_view.dart';
+import '../../../common/widgets/products/product_cards/product_card_vertical.dart'; // Import the custom grid view
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                       Stack(
                         children: [
                           IconButton(
-                            onPressed: ()=> Get.to(()=> const CartScreen()),
+                            onPressed: () => Get.to(() => const CartScreen()),
                             icon: const Icon(
                               Iconsax.shopping_bag,
                               color: Colors.white,
@@ -103,7 +104,8 @@ class HomeScreen extends StatelessWidget {
                           Expanded(
                             child: Text(
                               'Search in Store',
-                              style: Theme.of(context).textTheme.bodySmall!,
+                              style: Theme.of(context).textTheme.bodySmall,
+
                             ),
                           ),
                         ],
@@ -116,21 +118,12 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Popular Categories",
-                              style: Theme.of(context).textTheme.headlineSmall,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(width: 16), // Adjusted spacing
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text('View All'),
-                            ),
-                          ],
+                        TSectionHeading(
+                          title: 'Popular Categories',
+                          onViewAll: () => Get.to(() => const SubCategoriesScreen()),
+
                         ),
+                        const SizedBox(height: 16.0,),
                         SizedBox(
                           height: 100, // Adjusted height
                           child: ListView.builder(
@@ -141,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                               return Padding(
                                 padding: const EdgeInsets.only(right: 16),
                                 child: GestureDetector(
-                                  onTap: ()=> Get.to(()=> const SubCategoriesScreen()),
+                                  onTap: () => Get.to(() => const SubCategoriesScreen()),
                                   child: Column(
                                     children: [
                                       Container(
@@ -150,8 +143,7 @@ class HomeScreen extends StatelessWidget {
                                         padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(100),
+                                          borderRadius: BorderRadius.circular(100),
                                         ),
                                         child: const Center(
                                           child: Image(
@@ -184,110 +176,37 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 32.0,),
+                  const SizedBox(height: 32.0),
                 ],
               ),
             ),
-              Padding(
+            Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
                 children: [
                   const TPromoSlider(),
-                  const SizedBox(
-                    height: 32,
-                  ),
                   const SizedBox(height: 32),
                   Padding(
                     padding: const EdgeInsets.only(left: 24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Popular Products",
-                              style: Theme.of(context).textTheme.headlineSmall,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(width: 16), // Adjusted spacing
-                            TextButton(
-                              iconAlignment: IconAlignment.end,
-                              onPressed: ()=> Get.to(()=> const AllProducts()),
-                              child: const Text('View All'),
-                            ),
-                          ],
+                        TSectionHeading(
+                          title: 'Popular Products',
+                          onViewAll: () => Get.to(() => const AllProducts()),
+                          showViewAll: true,
                         ),
-              ],),
-    ),
-                  GridView.builder(
+                      ],
+                    ),
+                  ),
+                  TCustomGridView(
                     itemCount: 6,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 16,crossAxisSpacing: 16,mainAxisExtent: 280,),
-                    itemBuilder: (_,index)=> const TProductCardVertical(),
+                    itemBuilder: (_, index) => const TProductCardVertical(),
                   ),
                 ],
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-
-
-class TRoundedImage extends StatelessWidget {
-  const TRoundedImage({
-    super.key,
-    this.width,
-    this.height,
-    required this.imageUrl,
-    this.applyImagerRadius = true,
-    this.border,
-    this.backgroundColor = TColors.light,
-    this.fit = BoxFit.contain,
-    this.padding,
-     this.isNetworkImage = false,
-    this.onPressed,  this.borderRadius = 12,
-  });
-
-  final double? width, height;
-  final String imageUrl;
-  final bool applyImagerRadius;
-  final BoxBorder? border;
-  final Color backgroundColor;
-  final BoxFit? fit;
-  final EdgeInsetsGeometry? padding;
-  final bool isNetworkImage;
-  final VoidCallback? onPressed;
-  final double borderRadius;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: width,
-        height: height,
-        padding: padding,
-        decoration: BoxDecoration(
-          border: border,
-          borderRadius: BorderRadius.circular(borderRadius),
-          color: backgroundColor,
-        ),
-        child: ClipRRect(
-          borderRadius:
-              applyImagerRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-          child: Image(
-            fit: fit,
-            image: isNetworkImage
-                ? NetworkImage(imageUrl)
-                : AssetImage(imageUrl) as ImageProvider,
-          ),
         ),
       ),
     );

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/features/shop/screens/widgets/product_title_text.dart';
 
+import '../../../../common/widgets/custom_shapes/containers/rounded_image.dart';
 import '../../../../common/widgets/products/product_cards/circular_icons.dart';
-import '../../../../common/widgets/products/product_cards/product_card_vertical.dart';
+
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/helpers/helper_functions.dart';
-import '../home.dart';
+
+import 'brand_title_verified.dart';
 
 class TCartItems extends StatelessWidget {
   const TCartItems({super.key,  this.showAddRemoveButtons = true});

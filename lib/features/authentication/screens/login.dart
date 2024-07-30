@@ -46,8 +46,7 @@ class LoginScreen extends StatelessWidget {
                       TextFormField(
                         decoration: const InputDecoration(
                             prefixIcon: Icon(Iconsax.direct_right),
-                            labelStyle: TextStyle(color: Colors.white),
-                            floatingLabelStyle: TextStyle(color: Colors.white),
+
                             labelText: 'Email'),
                       ),
                       const SizedBox(
@@ -95,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const Text("Sign In!"),
+                          child: const Text("Sign In"),
                         ),
                       ),
                       const SizedBox(

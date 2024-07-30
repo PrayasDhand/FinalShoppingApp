@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:pkart/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:pkart/features/shop/screens/home.dart';
+
 import 'package:pkart/features/shop/screens/widgets/product_title_text.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/helpers/helper_functions.dart';
 
+import '../../../../features/shop/screens/widgets/brand_title_verified.dart';
 import '../../../../utils/constants/colors.dart';
-
+import '../../custom_shapes/containers/rounded_image.dart';
 
 class TProductCardHorizontal extends StatelessWidget {
   const TProductCardHorizontal({super.key});
@@ -20,20 +20,19 @@ class TProductCardHorizontal extends StatelessWidget {
       width: 310,
       padding: const EdgeInsets.all(1),
       decoration: BoxDecoration(
-
         borderRadius: BorderRadius.circular(16.0),
         color: dark ? Colors.black : TColors.white,
       ),
       child: Row(
         children: [
-          ///thumbnail
+          /// Thumbnail
           TRoundedContainer(
             height: 120,
             padding: const EdgeInsets.all(2),
             backgroundColor: dark ? TColors.dark : TColors.light,
             child: Stack(
               children: [
-                ///Thumbnail Image
+                /// Thumbnail Image
                 const SizedBox(
                   width: 120,
                   height: 120,
@@ -51,7 +50,7 @@ class TProductCardHorizontal extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     child: Text(
-                      " 25%",
+                      "25%",
                       style: Theme.of(context)
                           .textTheme
                           .labelLarge!
@@ -83,23 +82,22 @@ class TProductCardHorizontal extends StatelessWidget {
             ),
           ),
 
-          ///details
-           SizedBox(
+          /// Details
+          SizedBox(
             width: 172,
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0, left: 8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TProductTitleText(title: 'Blue Nike Sports Sneakers',smallSize: true,maxLines: 2,),
-                      SizedBox(height: 8.0,),
-                      TBrandTitleWithVerifyIcon(title: 'Nike'),
-                    ],
+                  const TProductTitleText(
+                    title: 'Blue Nike Sports Sneakers',
+                    smallSize: true,
+                    maxLines: 2,
                   ),
+                  const SizedBox(height: 8.0),
+                  const TBrandTitleWithVerifyIcon(title: 'Nike'),
                   const Spacer(),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -120,22 +118,19 @@ class TProductCardHorizontal extends StatelessWidget {
                           ),
                         ),
                         child: const SizedBox(
-                            width: 32 * 1.2,
-                            height: 32 * 1.2,
-                            child: Icon(
-                              Iconsax.add_copy,
-                            )),
+                          width: 32 * 1.2,
+                          height: 32 * 1.2,
+                          child: Icon(
+                            Iconsax.add_copy,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-
-
-
-
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

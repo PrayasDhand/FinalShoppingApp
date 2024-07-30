@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pkart/common/widgets/products/product_cards/product_card_horizontal.dart';
-import 'package:pkart/features/shop/screens/home.dart';
+
 import 'package:pkart/utils/constants/image_strings.dart';
 
 import '../../../common/widgets/appbar/appbar.dart';
+import '../../../common/widgets/custom_shapes/containers/rounded_image.dart';
 
 class SubCategoriesScreen extends StatelessWidget {
   const SubCategoriesScreen({super.key});

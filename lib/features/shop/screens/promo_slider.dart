@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:pkart/features/shop/controllers/home_controller.dart';
 
 import '../../../common/widgets/custom_shapes/containers/circular_container.dart';
+import '../../../common/widgets/custom_shapes/containers/rounded_image.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/image_strings.dart';
-import 'home.dart';
+
 
 class TPromoSlider extends StatelessWidget {
   const TPromoSlider({
