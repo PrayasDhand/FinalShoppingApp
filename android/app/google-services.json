@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "772173373632",
+    "project_id": "ecommerceappflutter-3a654",
+    "storage_bucket": "ecommerceappflutter-3a654.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772173373632:android:e8fb6cc19763cbcbbb8d25",
+        "android_client_info": {
+          "package_name": "com.example.pkart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBESm2OVUwQqST0X6H0Md69IbP0V2T_Ljk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
