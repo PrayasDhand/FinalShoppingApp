@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pkart/features/authentication/screens/login.dart';
 
 class OnboardingController extends GetxController {
@@ -38,8 +39,10 @@ class OnboardingController extends GetxController {
         curve: Curves.easeInOut,
       );
     } else {
+      final storage = GetStorage();
+      storage.write('isFirstTime', false);
       // Handle if you want to navigate to a different screen after the last page
-      Get.offAll(const LoginScreen());
+      Get.offAll(()=> const LoginScreen());
     }
   }
 

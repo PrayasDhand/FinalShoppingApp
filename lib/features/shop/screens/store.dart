@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:pkart/features/shop/screens/brand_products.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/styles/section_headings.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pkart/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pkart/features/shop/screens/all_brands.dart';
+import 'package:pkart/features/shop/screens/checkout.dart';
 import 'package:pkart/features/shop/screens/widgets/brand_title_verified.dart';
 import 'package:pkart/utils/constants/colors.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
@@ -35,7 +36,7 @@ class StoreScreen extends StatelessWidget {
             Stack(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: ()=> Get.to(()=> const CheckoutScreen()),
                   icon: const Icon(
                     Iconsax.shopping_bag,
                     color: Colors.white,
@@ -143,7 +144,7 @@ class StoreScreen extends StatelessWidget {
                         itemCount: 4,
                         mainAxisExtent: 80,
                         itemBuilder: (_, index) => GestureDetector(
-                          onTap: () {},
+                          onTap: ()=> Get.to(()=> const BrandProducts()),
                           child: TRoundedContainer(
                             padding: const EdgeInsets.all(2),
                             showBorder: true,
