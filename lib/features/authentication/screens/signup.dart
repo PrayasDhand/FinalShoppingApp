@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 
 import 'package:pkart/utils/helpers/helper_functions.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 
+import '../controllers/signup_controller.dart';
 import '../widgets/signup_form.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -11,6 +14,7 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SignupController());
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(),

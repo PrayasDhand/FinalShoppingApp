@@ -24,7 +24,7 @@ class TValidator {
     if (value == null || value.isEmpty) {
       return 'Password is required.';
     }
-    if (value.length < 6 || value.length > 12) {
+    if (value.length < 6 || value.length > 15) {
       return 'Password must be between 6 and 12 characters.';
     }
     final hasUppercase = RegExp(r'[A-Z]').hasMatch(value);
