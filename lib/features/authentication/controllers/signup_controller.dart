@@ -88,7 +88,7 @@ class SignupController extends GetxController {
 
 // Navigate to the Verify Email screen
       Future.delayed(const Duration(seconds: 1), () {
-        Get.offAll(() => const VerifyEmailAddress());
+        Get.offAll(() =>  VerifyEmailAddress(email: email.text.trim(),));
       });
 
     } catch (e) {

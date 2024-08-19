@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:pkart/common/styles/spacing_styles.dart';
-import 'package:pkart/features/authentication/screens/login.dart';
+import 'package:pkart/data/repositories/authentication_repository.dart';
+
 
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -50,7 +51,7 @@ Welcome to your Ultimate Shopping Destination....Your Account is created Success
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()=>Get.to(()=> const LoginScreen()),
+                  onPressed: ()=> AuthenticationRepository.instance.screenRedirect(),
                   child: const Text("Continue"),
                 ),
               ),

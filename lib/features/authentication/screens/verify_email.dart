@@ -1,22 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pkart/features/authentication/screens/login.dart';
-import 'package:pkart/features/authentication/screens/verify_email_success.dart';
+import 'package:pkart/data/repositories/authentication_repository.dart';
+import 'package:pkart/features/authentication/controllers/verify_email_controller.dart';
+
+
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/helpers/helper_functions.dart';
 
 class VerifyEmailAddress extends StatelessWidget {
-  const VerifyEmailAddress({super.key});
+  const VerifyEmailAddress({super.key, this.email});
 
+  final String? email;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put( VerifyEmailController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () => Get.offAll(() => const LoginScreen()),
+              onPressed: () => AuthenticationRepository.instance.logout(),
               icon: const Icon(CupertinoIcons.clear))
         ],
       ),
@@ -44,7 +48,7 @@ class VerifyEmailAddress extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                "prayasdhand13@gmail.com",
+                email ?? '',
                 style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),
@@ -65,7 +69,7 @@ Congratulations, Your Account Awaits!....Kindly verify your email address to sta
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()=>Get.to(()=> const SuccessScreen()),
+                  onPressed: ()=> controller.checkEmailVerificationStatus(),
                   child: const Text("Continue"),
                 ),
               ),
@@ -73,7 +77,7 @@ Congratulations, Your Account Awaits!....Kindly verify your email address to sta
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: ()=> controller.sendEmailVerification(),
                   child: const Text("Resend Email"),
                 ),
               ),

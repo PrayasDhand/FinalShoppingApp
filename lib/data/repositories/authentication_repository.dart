@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pkart/features/authentication/screens/login.dart';
 import 'package:pkart/features/authentication/screens/onboarding.dart';
+import 'package:pkart/features/authentication/screens/verify_email.dart';
+import 'package:pkart/navigation_menu.dart';
 
 import '../../utils/exceptions/custom_exceptions.dart';
 
@@ -23,14 +25,25 @@ class AuthenticationRepository extends GetxController{
   }
   screenRedirect()  async {
 
+
     if (kDebugMode) {
       print('+++++++++++++++++++++++++++GetStorage+++++++++++++++++++++++++++++');
       print(deviceStorage.read('isFirstTime'));
 
     }
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(()=> const NavigationMenu());
+        
+      }  else{
+        Get.offAll(()=> VerifyEmailAddress(email: _auth.currentUser?.email,));
+      }
+      
+    }  else{
     deviceStorage.writeIfNull('isFirstTime', true);
     deviceStorage.read('isFirstTime' ) != true ? Get.offAll(()=> const LoginScreen()): Get.offAll(const OnboardingScreen());
-  }
+  }}
 
   /// Email Authentication- Sign iN
 /// Email Authentication - Register
@@ -54,6 +67,48 @@ class AuthenticationRepository extends GetxController{
     }
 
   }
+
+  /// [EmailVerification] - MAIL VERIFICATION
+Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    }on FirebaseAuthException catch(e){
+      throw TFirebaseAuthException(e.code).message;
+
+    }on FirebaseException catch(e){
+      throw TFirebaseException(e.code).message;
+
+    }on FormatException catch(_){
+      throw const TFormatException();
+
+    } on PlatformException catch(e){
+      throw TPlatformException(e.code).message;
+    } catch (e){
+      throw 'Something went Wrong! Try again';
+    }
+}
+
+/// [LogoutUser] - valid for any authentication
+Future<void> logout() async{
+  try {
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(()=> const LoginScreen());
+  }on FirebaseAuthException catch(e){
+    throw TFirebaseAuthException(e.code).message;
+
+  }on FirebaseException catch(e){
+    throw TFirebaseException(e.code).message;
+
+  }on FormatException catch(_){
+    throw const TFormatException();
+
+  } on PlatformException catch(e){
+    throw TPlatformException(e.code).message;
+  } catch (e){
+    throw 'Something went Wrong! Try again';
+  }
+
+}
 
   
 }
