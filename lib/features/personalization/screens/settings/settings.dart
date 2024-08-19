@@ -10,6 +10,7 @@ import 'package:pkart/features/shop/screens/orders.dart';
 import 'package:pkart/utils/constants/colors.dart';
 
 import '../../../../utils/constants/image_strings.dart';
+import '../../../authentication/screens/login.dart';
 import '../profile/profile.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -181,6 +182,15 @@ class SettingsScreen extends StatelessWidget {
                     onTap: () {},
                     trailing: Switch(value: true, onChanged: (value){},),
                   ),
+                  const SizedBox(height: 32.0),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton(
+                            onPressed: ()=>Get.off(()=> const LoginScreen()),
+                            child: const Text('Logout'),
+                          ),
+
+                        ),
 
                 ],
               ),

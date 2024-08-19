@@ -23,7 +23,10 @@ class NavigationMenu extends StatelessWidget {
           height: 80,
           elevation: 0,
           selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) => controller.selectedIndex.value = index,
+          onDestinationSelected: (index) {
+            controller.selectedIndex.value = index;
+            controller.update(); // Ensure that the UI is updated
+          },
           backgroundColor: darkMode ? Colors.black : Colors.white,
           indicatorColor: darkMode ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1),
           destinations: const [
@@ -44,6 +47,7 @@ class NavigationMenu extends StatelessWidget {
   }
 }
 
+
 class NavigationController extends GetxController {
   static NavigationController get to => Get.find();
 
@@ -53,7 +57,14 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     const StoreScreen(),
     const FavouriteScreen(),
-    const SettingsScreen(), // Placeholder for Profile screen
+    const SettingsScreen(),
   ];
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Ensure that the controller is properly initialized
+    update();
+  }
 }
 

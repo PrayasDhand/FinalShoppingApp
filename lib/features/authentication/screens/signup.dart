@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pkart/common/widgets/appbar/appbar.dart';
 
 
 
@@ -17,7 +18,7 @@ class SignupScreen extends StatelessWidget {
     Get.put(SignupController());
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const TAppBar(showBackArrow: true,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
