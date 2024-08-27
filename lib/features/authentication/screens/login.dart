@@ -16,6 +16,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final controller = Get.put(LoginController());
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
@@ -182,7 +183,7 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: ()=> controller.googleSignIn(),
                       icon: const Image(
                           width: 25,
                           height: 25,

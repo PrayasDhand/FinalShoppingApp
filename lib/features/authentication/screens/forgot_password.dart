@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
+import 'package:pkart/features/authentication/controllers/forget_password_controller.dart';
+import 'package:pkart/utils/validators/validations.dart';
 
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -12,6 +14,7 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     return Scaffold(
       appBar: const TAppBar(showBackArrow: true),
       body: Padding(
@@ -43,10 +46,15 @@ class ForgotPassword extends StatelessWidget {
             ),
 
             ///Text Field
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: "Email",
-                prefixIcon: Icon(Iconsax.direct_right),
+            Form(
+              key: controller.forgetPasswordFormKey,
+              child: TextFormField(
+                controller: controller.email,
+                validator: (value) => TValidator.validateEmail(value),
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  prefixIcon: Icon(Iconsax.direct_right),
+                ),
               ),
             ),
 
@@ -58,7 +66,7 @@ class ForgotPassword extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: ()=>Get.off(()=> const ResetPassword()),
+                onPressed: ()=> controller.sendPasswordResetEmail(),
                 child: const Text("Submit"),
               ),
             ),

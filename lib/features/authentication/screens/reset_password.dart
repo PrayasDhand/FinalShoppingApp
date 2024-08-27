@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pkart/features/authentication/controllers/forget_password_controller.dart';
 
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/helper_functions.dart';
 import 'login.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+  const ResetPassword({super.key, required this.email});
 
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +33,8 @@ class ResetPassword extends StatelessWidget {
               ),
 
               ///Title and Subtitle
+              Text(email,style: Theme.of(context).textTheme.bodyMedium, textAlign: TextAlign.center,),
+              const SizedBox(height: 16.0,),
               Text(
                 "Password Reset Link Sent Successfully !",
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -54,14 +58,14 @@ Your Account Security is our Priority....We have successfully sent you a Passwor
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: ()=>Get.to(()=> const LoginScreen()),
+                  onPressed: ()=>Get.offAll(()=> const LoginScreen()),
                   child: const Text("Continue"),
                 ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: ()=> ForgetPasswordController.instance.resendPasswordResetEmail(email),
                   child: const Text("Resend Email"),
                 ),
               ),
