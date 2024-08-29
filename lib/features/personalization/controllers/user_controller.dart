@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pkart/data/repositories/user_repository.dart';
 import 'package:pkart/features/personalization/models/user_model.dart';
 import 'package:pkart/utils/popups/loaders.dart';
@@ -7,7 +8,34 @@ import 'package:pkart/utils/popups/loaders.dart';
 class UserController extends GetxController{
   static UserController get instance => Get.find();
 
+final RxBool profileLoading = false.obs;
+  Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
+
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserRecord();
+  }
+
+  Future<void> fetchUserRecord() async {
+    try{
+      profileLoading.value = true;
+      final user = await UserRepository.instance.fetchUserDetails();
+      this.user(user);
+
+    } catch (e){
+      user(UserModel.empty());
+
+    }finally{
+      profileLoading.value =false;
+    }
+  }
+
+
+
+
 
   //Save user record which comes from any registration providers
 

@@ -4,20 +4,23 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/primary_container_header.dart';
 import 'package:pkart/common/widgets/list_tiles/settings_menu_tile.dart';
+import 'package:pkart/features/personalization/controllers/user_controller.dart';
 import 'package:pkart/features/personalization/screens/address/address.dart';
 import 'package:pkart/features/shop/screens/cart.dart';
 import 'package:pkart/features/shop/screens/orders.dart';
 import 'package:pkart/utils/constants/colors.dart';
-
 import '../../../../utils/constants/image_strings.dart';
 import '../../../authentication/screens/login.dart';
 import '../profile/profile.dart';
+import 'package:pkart/common/styles/shimmer.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -34,9 +37,7 @@ class SettingsScreen extends StatelessWidget {
                           .apply(color: TColors.white),
                     ),
                   ),
-
-                  ///user profile card
-                  ListTile(
+                  Obx(() => ListTile(
                     leading: Container(
                       width: 56,
                       height: 56,
@@ -52,31 +53,33 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    title: Text(
-                      "Prayas Dhand",
+                    title: controller.profileLoading.value
+                        ? const TShimmerEffect(width: 80, height: 15)
+                        : Text(
+                      controller.user.value.fullName,
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
                           .apply(color: TColors.white),
                     ),
-                    subtitle: Text(
-                      "prayasdhand13@gmail.com",
+                    subtitle: controller.profileLoading.value
+                        ? const TShimmerEffect(width: 80, height: 15)
+                        : Text(
+                      controller.user.value.email,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
                           .apply(color: TColors.white),
                     ),
                     trailing: IconButton(
-                      onPressed: ()=> Get.to(()=> const ProfileScreen()),
+                      onPressed: () => Get.to(() => const ProfileScreen()),
                       icon: const Icon(
                         Iconsax.edit_2,
                         color: Colors.white,
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 32.0,
-                  ),
+                  )),
+                  const SizedBox(height: 32.0),
                 ],
               ),
             ),
@@ -94,26 +97,24 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   TSettingsMenuTile(
                     icon: Iconsax.safe_home_copy,
                     title: 'My Addresses',
                     subTitle: 'Set Shopping Delivery Address',
-                    onTap: () => Get.to(()=> const UserAddressScreen()),
+                    onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.shopping_cart_copy,
                     title: 'My Cart',
                     subTitle: 'Add or remove products and move to checkout',
-                    onTap: ()=> Get.to(()=> const CartScreen()),
+                    onTap: () => Get.to(() => const CartScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick_copy,
                     title: 'My Orders',
                     subTitle: 'In-Progress and Complete Orders',
-                    onTap: () => Get.to(()=> const OrdersScreen()),
+                    onTap: () => Get.to(() => const OrdersScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bank_copy,
@@ -139,9 +140,7 @@ class SettingsScreen extends StatelessWidget {
                     subTitle: 'Manage Data Usage and Connected Accounts',
                     onTap: () {},
                   ),
-                  const SizedBox(
-                    height: 32,
-                  ),
+                  const SizedBox(height: 32),
                   Row(
                     children: [
                       Text(
@@ -152,9 +151,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   TSettingsMenuTile(
                     icon: Iconsax.document_upload_copy,
                     title: 'Load Data',
@@ -166,38 +163,20 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Geo-Location',
                     subTitle: 'Get Recommendations based on your location',
                     onTap: () {},
-                    trailing: Switch(value: true, onChanged: (value){},),
-                  ),
-                  TSettingsMenuTile(
-                    icon: Iconsax.security_user_copy,
-                    title: 'Safe Mode',
-                    subTitle: 'Products search safe for all age users',
-                    onTap: () {},
-                    trailing: Switch(value: true, onChanged: (value){},),
-                  ),
-                  TSettingsMenuTile(
-                    icon: Iconsax.image_copy,
-                    title: 'HD Image Quality',
-                    subTitle: 'set image quality to be seen',
-                    onTap: () {},
-                    trailing: Switch(value: true, onChanged: (value){},),
+                    trailing: Switch(value: true, onChanged: (value) {}),
                   ),
                   const SizedBox(height: 32.0),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton(
-                            onPressed: ()=>Get.off(()=> const LoginScreen()),
-                            child: const Text('Logout'),
-                          ),
-
-                        ),
-
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () => Get.off(() => const LoginScreen()),
+                      child: const Text('Logout'),
+                    ),
+                  ),
                 ],
               ),
             ),
           ],
-
-          ///body
         ),
       ),
     );

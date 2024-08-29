@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:pkart/common/styles/section_headings.dart'; // Ensure the import path is correct
+import 'package:pkart/common/styles/section_headings.dart';
+import 'package:pkart/common/styles/shimmer.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
+import 'package:pkart/features/personalization/controllers/user_controller.dart';
 import 'package:pkart/features/shop/screens/all_products.dart';
 import 'package:pkart/features/shop/screens/cart.dart';
 import 'package:pkart/features/shop/screens/promo_slider.dart';
@@ -10,16 +12,16 @@ import 'package:pkart/features/shop/screens/sub_categories.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/device/device_utility.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/primary_container_header.dart';
-
-
 import '../../../common/widgets/grids/custom_grid_view.dart';
-import '../../../common/widgets/products/product_cards/product_card_vertical.dart'; // Import the custom grid view
+import '../../../common/widgets/products/product_cards/product_card_vertical.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -40,13 +42,19 @@ class HomeScreen extends StatelessWidget {
                               .labelMedium!
                               .apply(color: Colors.white),
                         ),
-                        Text(
-                          "Prayas Dhand",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall!
-                              .apply(color: Colors.white),
-                        ),
+                        Obx(() {
+                          if (controller.profileLoading.value) {
+                            return const TShimmerEffect(width: 80, height: 15);
+                          } else {
+                            return Text(
+                              controller.user.value.fullName,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium!
+                                  .apply(color: Colors.white),
+                            );
+                          }
+                        }),
                       ],
                     ),
                     actions: [
@@ -80,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 32),
@@ -96,16 +104,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          const Icon(
-                            Iconsax.search_normal_1,
-                            color: Colors.grey,
-                          ),
+                          const Icon(Iconsax.search_normal_1, color: Colors.grey),
                           const SizedBox(width: 16.0),
                           Expanded(
                             child: Text(
                               'Search in Store',
                               style: Theme.of(context).textTheme.bodySmall,
-
                             ),
                           ),
                         ],
@@ -121,11 +125,10 @@ class HomeScreen extends StatelessWidget {
                         TSectionHeading(
                           title: 'Popular Categories',
                           onViewAll: () => Get.to(() => const SubCategoriesScreen()),
-
                         ),
-                        const SizedBox(height: 16.0,),
+                        const SizedBox(height: 16.0),
                         SizedBox(
-                          height: 100, // Adjusted height
+                          height: 100,
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: 6,

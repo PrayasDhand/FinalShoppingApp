@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pkart/features/personalization/controllers/user_controller.dart';
+import 'package:pkart/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:pkart/features/personalization/screens/profile/widgets/profile_menu.dart';
 
 import '../../../../common/widgets/appbar/appbar.dart';
@@ -10,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: const TAppBar(
         title: Text('Profile'),
@@ -67,14 +71,14 @@ class ProfileScreen extends StatelessWidget {
                 height: 16.0,
               ),
               TProfileMenu(
-                onPressed: () {},
+                onPressed: () => Get.to(const ChangeNameScreen()),
                 title: 'Name',
-                value: 'Prayas Dhand',
+                value: controller.user.value.fullName,
               ),
               TProfileMenu(
                 onPressed: () {},
                 title: 'User Name',
-                value: 'PrayasD13',
+                value: controller.user.value.username,
               ),
               const SizedBox(
                 height: 16.0,
@@ -99,18 +103,18 @@ class ProfileScreen extends StatelessWidget {
               TProfileMenu(
                 onPressed: () {},
                 title: 'User Id',
-                value: '13062001',
+                value: controller.user.value.id,
                 icon: Iconsax.copy_copy,
               ),
               TProfileMenu(
                 onPressed: () {},
                 title: 'E-Mail',
-                value: 'prayasdhand13@gmail.com',
+                value: controller.user.value.email,
               ),
               TProfileMenu(
                 onPressed: () {},
                 title: 'Contact No.',
-                value: '+91-8572-859-197',
+                value: controller.user.value.phoneNumber,
               ),
               TProfileMenu(
                 onPressed: () {},
@@ -126,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 16.0,
               ),
-              
+
               Center(
                 child: TextButton(
                   onPressed: (){},
