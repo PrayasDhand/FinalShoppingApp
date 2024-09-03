@@ -1,12 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pkart/features/personalization/controllers/user_controller.dart';
 import 'package:pkart/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:pkart/features/personalization/screens/profile/widgets/profile_menu.dart';
+import 'package:pkart/utils/constants/image_strings.dart';
+import 'package:pkart/utils/helpers/helper_functions.dart';
 
+import '../../../../common/styles/shimmer.dart';
 import '../../../../common/widgets/appbar/appbar.dart';
-import '../../../../utils/constants/image_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -28,23 +31,18 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Container(
-                      width: 80,
-                      height: 80,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: const Center(
-                        child: Image(
-                          image: AssetImage(TImages.user1),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image = networkImage.isNotEmpty ? networkImage : TImages.user1;
+                      return controller.imageUploading.value  ? const TShimmerEffect(width: 80, height: 80,radius: 80,) :TCircularImage(
+                        image: image,
+                        height: 80,
+                        width: 80,
+                        isNetworkImage: networkImage.isNotEmpty,
+                      );
+                    }),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: ()=> controller.uploadUserProfilePicture(),
                       child: const Text("Change Profile Picture"),
                     ),
                   ],
@@ -130,16 +128,79 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 16.0,
               ),
-
               Center(
                 child: TextButton(
-                  onPressed: (){},
-                  child: const Text('Close Account', style: TextStyle(color: Colors.red),),
+                  onPressed: () {},
+                  child: const Text(
+                    'Close Account',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ),
               )
-
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class TCircularImage extends StatelessWidget {
+  const TCircularImage({
+    super.key,
+    this.fit = BoxFit.cover,
+    required this.image,
+    this.isNetworkImage = false,
+    this.overlayColor,
+    this.backgroundColor,
+    this.width = 56,
+    this.height = 56,
+    this.padding = 8,
+  });
+
+  final BoxFit? fit;
+  final String image;
+  final bool isNetworkImage;
+  final Color? overlayColor;
+  final Color? backgroundColor;
+  final double width, height, padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      padding: EdgeInsets.all(padding),
+      decoration: BoxDecoration(
+        color: backgroundColor ??
+            (THelperFunctions.isDarkMode(context)
+                ? Colors.black
+                : Colors.white),
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  fit: fit,
+                  color: overlayColor,
+                  imageUrl: image,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      const TShimmerEffect(
+                    width: 55,
+                    height: 55,
+                  ),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error_outline),
+                )
+              : Image(
+                  color: overlayColor,
+                  image: isNetworkImage
+                      ? NetworkImage(image)
+                      : AssetImage(image) as ImageProvider,
+                  fit: fit,
+                ),
         ),
       ),
     );
