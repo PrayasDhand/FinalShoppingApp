@@ -5,6 +5,7 @@ import 'package:pkart/common/styles/section_headings.dart';
 import 'package:pkart/common/styles/shimmer.dart';
 import 'package:pkart/common/widgets/appbar/appbar.dart';
 import 'package:pkart/features/personalization/controllers/user_controller.dart';
+import 'package:pkart/features/shop/controllers/category_controller.dart';
 import 'package:pkart/features/shop/screens/all_products.dart';
 import 'package:pkart/features/shop/screens/cart.dart';
 import 'package:pkart/features/shop/screens/promo_slider.dart';
@@ -12,6 +13,7 @@ import 'package:pkart/features/shop/screens/sub_categories.dart';
 import 'package:pkart/utils/constants/image_strings.dart';
 import 'package:pkart/utils/device/device_utility.dart';
 import 'package:pkart/common/widgets/custom_shapes/containers/primary_container_header.dart';
+import '../../../common/styles/category_shimmer.dart';
 import '../../../common/widgets/grids/custom_grid_view.dart';
 import '../../../common/widgets/products/product_cards/product_card_vertical.dart';
 
@@ -21,6 +23,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
+    final categoryController = Get.put(CategoryController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -127,54 +130,67 @@ class HomeScreen extends StatelessWidget {
                           onViewAll: () => Get.to(() => const SubCategoriesScreen()),
                         ),
                         const SizedBox(height: 16.0),
-                        SizedBox(
-                          height: 100,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 6,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (_, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 16),
-                                child: GestureDetector(
-                                  onTap: () => Get.to(() => const SubCategoriesScreen()),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 56,
-                                        height: 56,
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(100),
-                                        ),
-                                        child: const Center(
-                                          child: Image(
-                                            image: AssetImage(TImages.brand1),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      SizedBox(
-                                        width: 55,
-                                        child: Text(
-                                          'Shoes',
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium!
-                                              .apply(color: Colors.white),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                        Obx(
+                          (){
+                            if (categoryController.isLoading.value) return const TCategoryShimmer();
+                            if (categoryController.featuredCategories.isEmpty) {
+                              return Center(
+                                child: Text('No data found',style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),
                               );
-                            },
-                          ),
+
+                            }
+                            return SizedBox(
+                              height: 100,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: categoryController.featuredCategories.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (_, index) {
+                                  final category = categoryController.featuredCategories[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 16),
+                                    child: GestureDetector(
+                                      onTap: () => Get.to(() => const SubCategoriesScreen()),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: 56,
+                                            height: 56,
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(100),
+                                            ),
+                                            child:  const Center(
+                                              child: Image(
+                                                image: AssetImage(TImages.brand1),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          SizedBox(
+                                            width: 55,
+                                            child: Text(
+                                              category.name,
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelMedium!
+                                                  .apply(color: Colors.white),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          }
+
                         ),
                       ],
                     ),
