@@ -150,7 +150,7 @@ class TCircularImage extends StatelessWidget {
     super.key,
     this.fit = BoxFit.cover,
     required this.image,
-    this.isNetworkImage = false,
+    this.isNetworkImage = true,
     this.overlayColor,
     this.backgroundColor,
     this.width = 56,
@@ -192,7 +192,7 @@ class TCircularImage extends StatelessWidget {
                     height: 55,
                   ),
                   errorWidget: (context, url, error) =>
-                      const Icon(Icons.error_outline),
+                      const Icon(Icons.error_outline,color: Colors.black,size: 35,),
                 )
               : Image(
                   color: overlayColor,

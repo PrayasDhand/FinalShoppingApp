@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pkart/data/repositories/category_repository.dart';
 
-import '../../../utils/popups/full_screen_loader.dart';
+
 import '../../../utils/popups/loaders.dart';
 import '../models/category_model.dart';
 
